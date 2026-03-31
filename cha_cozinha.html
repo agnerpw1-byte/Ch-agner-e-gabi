@@ -1,0 +1,145 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=DM+Sans:wght@300;400;500&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body, #app { font-family: 'DM Sans', sans-serif; background: #2d5a3d; color: #f5f0e8; min-height: 100vh; }
+  .hero { text-align: center; padding: 3rem 1.5rem 2rem; }
+  .hero-tag { display: inline-block; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #b8d4be; border: 0.5px solid rgba(255,255,255,0.2); padding: 4px 14px; border-radius: 999px; margin-bottom: 1.2rem; }
+  .hero h1 { font-family: 'Playfair Display', serif; font-size: 2.4rem; font-weight: 500; line-height: 1.2; margin-bottom: 0.5rem; color: #fff; }
+  .hero h1 span { color: #e8c97a; }
+  .hero p { font-size: 14px; color: #b8d4be; margin-bottom: 0.4rem; }
+  .divider { width: 40px; height: 1px; background: #e8c97a; opacity: 0.6; margin: 1.5rem auto; }
+  .name-screen { max-width: 420px; margin: 0 auto; padding: 0 1.5rem 2rem; }
+  .card { background: rgba(255,255,255,0.1); border: 0.5px solid rgba(255,255,255,0.2); border-radius: var(--border-radius-lg); padding: 1.5rem; }
+  .card-title { font-size: 15px; font-weight: 500; margin-bottom: 0.4rem; color: #fff; }
+  .card-sub { font-size: 13px; color: #b8d4be; margin-bottom: 1.2rem; line-height: 1.5; }
+  input[type="text"] { width: 100%; padding: 10px 14px; font-size: 15px; border: 0.5px solid rgba(255,255,255,0.25); border-radius: var(--border-radius-md); background: rgba(255,255,255,0.12); color: #fff; outline: none; margin-bottom: 1rem; font-family: 'DM Sans', sans-serif; transition: border-color 0.15s; }
+  input[type="text"]::placeholder { color: rgba(255,255,255,0.4); }
+  input[type="text"]:focus { border-color: #e8c97a; }
+  .btn-primary { width: 100%; padding: 11px; background: #e8c97a; color: #2d5a3d; border: none; border-radius: var(--border-radius-md); font-size: 14px; font-weight: 500; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: opacity 0.15s; }
+  .btn-primary:hover { opacity: 0.9; }
+  .btn-primary:disabled { opacity: 0.35; cursor: default; }
+  .list-screen { max-width: 640px; margin: 0 auto; padding: 0 1.2rem 3rem; }
+  .user-bar { display: flex; align-items: center; gap: 10px; margin-bottom: 1.5rem; padding: 10px 14px; background: rgba(255,255,255,0.1); border: 0.5px solid rgba(255,255,255,0.18); border-radius: var(--border-radius-md); font-size: 13px; color: #b8d4be; }
+  .user-dot { width: 28px; height: 28px; border-radius: 50%; background: #e8c97a; color: #2d5a3d; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 500; flex-shrink: 0; }
+  .progress-bar-wrap { background: rgba(255,255,255,0.12); border-radius: 999px; height: 6px; margin-bottom: 1.8rem; overflow: hidden; }
+  .progress-bar-fill { height: 100%; background: #e8c97a; border-radius: 999px; transition: width 0.4s ease; }
+  .progress-label { font-size: 12px; color: #b8d4be; text-align: right; margin-bottom: 0.5rem; }
+  .section-label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin: 1.5rem 0 0.8rem; }
+  .gift-item { background: rgba(255,255,255,0.08); border: 0.5px solid rgba(255,255,255,0.15); border-radius: var(--border-radius-lg); padding: 1.1rem 1.2rem; margin-bottom: 10px; display: flex; align-items: center; gap: 14px; transition: border-color 0.2s, background 0.2s, opacity 0.2s; cursor: pointer; user-select: none; }
+  .gift-item:hover:not(.taken-by-other) { border-color: rgba(255,255,255,0.35); background: rgba(255,255,255,0.13); }
+  .gift-item.chosen-by-me { border-color: #e8c97a; background: rgba(232,201,122,0.12); }
+  .gift-item.taken-by-other { opacity: 0.45; cursor: default; }
+  .gift-icon { font-size: 24px; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.1); border-radius: var(--border-radius-md); flex-shrink: 0; }
+  .gift-info { flex: 1; min-width: 0; }
+  .gift-name { font-size: 15px; font-weight: 500; color: #fff; }
+  .gift-desc { font-size: 12px; color: #9dc4a7; margin-top: 3px; }
+  .gift-status { font-size: 12px; font-weight: 500; flex-shrink: 0; padding: 4px 12px; border-radius: 999px; }
+  .status-free { color: rgba(255,255,255,0.35); border: 0.5px solid rgba(255,255,255,0.2); }
+  .status-mine { background: #e8c97a; color: #2d5a3d; }
+  .status-taken { background: rgba(255,255,255,0.1); color: #9dc4a7; font-size: 11px; }
+</style>
+
+<div id="app">
+  <div class="hero">
+    <div class="hero-tag">Chá de Cozinha</div>
+    <h1>Agner <span>&</span> Gabriela</h1>
+    <p>🗓 Sábado, 12 de abril de 2025</p>
+    <p>📍 Rua Antônio Pilegi, 901 — atrás da autoescola, Santa Fé</p>
+    <div class="divider"></div>
+    <p style="font-size:13px;color:#b8d4be">Escolha um presente da lista abaixo e ele ficará reservado no seu nome 💛</p>
+  </div>
+
+  <div id="name-screen" class="name-screen">
+    <div class="card">
+      <p class="card-title">Como você se chama?</p>
+      <p class="card-sub">Informe seu nome para poder escolher um presente. Ele aparecerá para todos na lista.</p>
+      <input type="text" id="name-input" placeholder="Seu nome completo" maxlength="40" />
+      <button class="btn-primary" id="btn-enter" onclick="enterList()" disabled>Ver a lista de presentes</button>
+    </div>
+  </div>
+
+  <div id="list-screen" class="list-screen" style="display:none">
+    <div class="user-bar">
+      <div class="user-dot" id="user-initial">A</div>
+      <span>Olá, <strong id="user-name-display" style="color:#fff">Visitante</strong>! Toque num item para reservar.</span>
+    </div>
+    <div class="progress-label" id="prog-label">0 de 5 itens escolhidos</div>
+    <div class="progress-bar-wrap"><div class="progress-bar-fill" id="prog-bar" style="width:0%"></div></div>
+    <div class="section-label">Lista de presentes</div>
+    <div id="gifts-container"></div>
+  </div>
+</div>
+
+<script>
+const GIFTS = [
+  { id:1, icon:'🥘', name:'Panela de pressão', desc:'5 litros, alumínio ou inox' },
+  { id:2, icon:'🍰', name:'Batedeira', desc:'Elétrica, potência mínima 300W' },
+  { id:3, icon:'🔪', name:'Kit faca', desc:'Conjunto com 5 peças e suporte' },
+  { id:4, icon:'🎂', name:'Kit de formas', desc:'Formas antiaderentes variadas' },
+  { id:5, icon:'🥂', name:'Kit copo', desc:'Conjunto de copos para o dia a dia' },
+];
+
+let userName = '';
+let chosen = {};
+
+const nameInput = document.getElementById('name-input');
+const btnEnter = document.getElementById('btn-enter');
+
+nameInput.addEventListener('input', () => { btnEnter.disabled = nameInput.value.trim().length < 2; });
+nameInput.addEventListener('keydown', e => { if (e.key === 'Enter' && nameInput.value.trim().length >= 2) enterList(); });
+
+function enterList() {
+  userName = nameInput.value.trim();
+  if (!userName) return;
+  document.getElementById('name-screen').style.display = 'none';
+  document.getElementById('list-screen').style.display = 'block';
+  document.getElementById('user-name-display').textContent = userName;
+  document.getElementById('user-initial').textContent = userName[0].toUpperCase();
+  loadStorage();
+}
+
+function loadStorage() {
+  try { const raw = localStorage.getItem('cha_agner_gabriela_v3'); if (raw) chosen = JSON.parse(raw); } catch(e) { chosen = {}; }
+  renderGifts();
+}
+
+function saveStorage() {
+  try { localStorage.setItem('cha_agner_gabriela_v3', JSON.stringify(chosen)); } catch(e) {}
+}
+
+function toggleGift(id) {
+  const taker = chosen[id];
+  if (taker && taker !== userName) return;
+  if (taker === userName) { delete chosen[id]; } else { chosen[id] = userName; }
+  saveStorage();
+  renderGifts();
+}
+
+function renderGifts() {
+  const container = document.getElementById('gifts-container');
+  if (!container) return;
+  const total = GIFTS.length;
+  const takenCount = Object.keys(chosen).length;
+  document.getElementById('prog-label').textContent = takenCount + ' de ' + total + ' itens escolhidos';
+  document.getElementById('prog-bar').style.width = Math.round(takenCount / total * 100) + '%';
+  container.innerHTML = GIFTS.map(g => {
+    const taker = chosen[g.id];
+    const mine = taker === userName;
+    const takenOther = taker && !mine;
+    let cls = 'gift-item' + (mine ? ' chosen-by-me' : '') + (takenOther ? ' taken-by-other' : '');
+    let statusHtml = mine
+      ? '<span class="gift-status status-mine">Você escolheu ✓</span>'
+      : takenOther
+        ? '<span class="gift-status status-taken">Reservado por ' + escHtml(taker) + '</span>'
+        : '<span class="gift-status status-free">Disponível</span>';
+    const onclick = takenOther ? '' : 'onclick="toggleGift(' + g.id + ')"';
+    return '<div class="' + cls + '" ' + onclick + '>'
+      + '<div class="gift-icon">' + g.icon + '</div>'
+      + '<div class="gift-info"><div class="gift-name">' + escHtml(g.name) + '</div><div class="gift-desc">' + escHtml(g.desc) + '</div></div>'
+      + statusHtml + '</div>';
+  }).join('');
+}
+
+function escHtml(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+</script>

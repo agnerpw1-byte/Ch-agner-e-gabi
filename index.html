@@ -113,6 +113,10 @@ input:focus{border-color:#e8c97a}
 .ganm{font-size:14px;font-weight:500;color:#fff}
 .gaby{font-size:13px;color:#9dc4a7;margin-top:2px}
 .emp{text-align:center;color:#9dc4a7;font-size:15px;padding:2rem 0}
+.slideshow{position:fixed;inset:0;z-index:-1;pointer-events:none;display:none}
+.pg.on .slideshow{display:block}
+.slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 1.8s ease-in-out;filter:brightness(0.2) saturate(0.6)}
+.slide.active{opacity:1}
 </style>
 <script>
 var GG=[
@@ -289,6 +293,13 @@ function rAdmG(){
 </div>
 
 <div id="p1" class="pg">
+  <div class="slideshow" id="slideshow">
+    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&q=80')"></div>
+    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1615361200141-f45040f367be?w=1200&q=80')"></div>
+    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1495521821757-a1efb6729352?w=1200&q=80')"></div>
+    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?w=1200&q=80')"></div>
+    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1584990347449-a2d4c2c4e2a0?w=1200&q=80')"></div>
+  </div>
   <div class="rbox">
     <span class="rico">&#127958;</span>
     <h2 class="rt">Ol&#225;, <span id="rn" class="rn"></span>!</h2>
@@ -306,6 +317,13 @@ function rAdmG(){
 </div>
 
 <div id="p2" class="pg">
+  <div class="slideshow" id="slideshow">
+    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&q=80')"></div>
+    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1615361200141-f45040f367be?w=1200&q=80')"></div>
+    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1495521821757-a1efb6729352?w=1200&q=80')"></div>
+    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?w=1200&q=80')"></div>
+    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1584990347449-a2d4c2c4e2a0?w=1200&q=80')"></div>
+  </div>
   <div class="mhero">
     <div class="tag">Ch&#225; de Cozinha</div>
     <h1 class="ttl" style="font-size:2rem">Agner <span class="amp">&amp;</span> Gabriela</h1>
@@ -320,6 +338,13 @@ function rAdmG(){
 </div>
 
 <div id="p3" class="pg">
+  <div class="slideshow" id="slideshow">
+    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&q=80')"></div>
+    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1615361200141-f45040f367be?w=1200&q=80')"></div>
+    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1495521821757-a1efb6729352?w=1200&q=80')"></div>
+    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?w=1200&q=80')"></div>
+    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1584990347449-a2d4c2c4e2a0?w=1200&q=80')"></div>
+  </div>
   <div class="gwrap">
     <div class="ghdr">
       <button class="bbk" onclick="pSel=null;pg('p2')">&#8592; Voltar</button>
@@ -335,6 +360,13 @@ function rAdmG(){
 </div>
 
 <div id="p4" class="pg">
+  <div class="slideshow" id="slideshow">
+    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&q=80')"></div>
+    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1615361200141-f45040f367be?w=1200&q=80')"></div>
+    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1495521821757-a1efb6729352?w=1200&q=80')"></div>
+    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?w=1200&q=80')"></div>
+    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1584990347449-a2d4c2c4e2a0?w=1200&q=80')"></div>
+  </div>
   <div class="tbox">
     <span class="tico">&#127882;</span>
     <h2 class="tt">Presente confirmado!</h2>
@@ -346,6 +378,13 @@ function rAdmG(){
 </div>
 
 <div id="p5" class="pg">
+  <div class="slideshow" id="slideshow">
+    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&q=80')"></div>
+    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1615361200141-f45040f367be?w=1200&q=80')"></div>
+    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1495521821757-a1efb6729352?w=1200&q=80')"></div>
+    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?w=1200&q=80')"></div>
+    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1584990347449-a2d4c2c4e2a0?w=1200&q=80')"></div>
+  </div>
   <div class="awrap">
     <h2 class="at">&#128203; Painel do evento</h2>
     <div class="acnts">
@@ -360,6 +399,19 @@ function rAdmG(){
   </div>
 </div>
 
+<script>
+// Slideshow
+var slides=document.querySelectorAll('.slide');
+var curSlide=0;
+function nextSlide(){
+  slides[curSlide].classList.remove('active');
+  curSlide=(curSlide+1)%slides.length;
+  slides[curSlide].classList.add('active');
+}
+// Start first slide
+if(slides.length>0)slides[0].classList.add('active');
+setInterval(nextSlide,5000);
+</script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 <script>

@@ -7,7 +7,7 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap');
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-html,body{width:100%;height:100%;background:#2d5a3d;font-family:'DM Sans',sans-serif;color:#f5f0e8;overflow:hidden}
+html,body{width:100%;height:100%;background:#2d5a3d;position:relative;font-family:'DM Sans',sans-serif;color:#f5f0e8;overflow:hidden}
 .pg{display:none;position:fixed;inset:0;overflow-y:auto;-webkit-overflow-scrolling:touch;background:#2d5a3d}
 .pg.on{display:block}
 #p0.on{display:flex;flex-direction:column;min-height:100%}
@@ -113,19 +113,56 @@ input:focus{border-color:#e8c97a}
 .ganm{font-size:14px;font-weight:500;color:#fff}
 .gaby{font-size:13px;color:#9dc4a7;margin-top:2px}
 .emp{text-align:center;color:#9dc4a7;font-size:15px;padding:2rem 0}
-.slideshow{position:fixed;inset:0;z-index:-1;pointer-events:none;display:none}
-.pg.on .slideshow{display:block}
-.slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 1.8s ease-in-out;filter:brightness(0.2) saturate(0.6)}
-.slide.active{opacity:1}
 </style>
 <script>
 var GG=[
-  {id:'1',ico:'&#x1F958;',nm:'Panela de pressão',ds:'5 litros, alumínio ou inox',img:'https://images.unsplash.com/photo-1585325701956-60dd9c8553bc?w=400&q=80'},
-  {id:'2',ico:'&#x1F370;',nm:'Batedeira',ds:'Elétrica, potência mínima 300W',img:'https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=400&q=80'},
-  {id:'3',ico:'&#x1F52A;',nm:'Kit faca',ds:'Conjunto com 5 peças e suporte',img:'https://images.unsplash.com/photo-1593618998160-e34014e67546?w=400&q=80'},
-  {id:'4',ico:'&#x1F382;',nm:'Kit de formas',ds:'Formas antiaderentes variadas',img:'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&q=80'},
-  {id:'5',ico:'&#x1F942;',nm:'Kit copo',ds:'Conjunto de copos para o dia a dia',img:'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=400&q=80'}
-];
+  {id:'1',ico:'&#x1F371;',nm:'Batedeira',ds:'Elétrica, potência mínima 300W',img:'https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=400&q=80'},
+  {id:'2',ico:'&#x1F964;',nm:'Liquidificador',ds:'Potência mínima 500W',img:'https://images.unsplash.com/photo-1570222094114-d054a817e56b?w=400&q=80'},
+  {id:'3',ico:'&#x1F35F;',nm:'Airfryer',ds:'Fritadeira elétrica sem óleo',img:'https://images.unsplash.com/photo-1585325701956-60dd9c8553bc?w=400&q=80'},
+  {id:'4',ico:'&#x1F96A;',nm:'Sanduicheira',ds:'Elétrica com antiaderente',img:'https://images.unsplash.com/photo-1585325701956-60dd9c8553bc?w=400&q=80'},
+  {id:'5',ico:'&#x2615;',nm:'Cafeteira',ds:'Elétrica ou de prensa francesa',img:'https://images.unsplash.com/photo-1509785307050-d4066910ec1e?w=400&q=80'},
+  {id:'6',ico:'&#x1F372;',nm:'Panela elétrica',ds:'Para arroz ou multiuso',img:'https://images.unsplash.com/photo-1585325701956-60dd9c8553bc?w=400&q=80'},
+  {id:'7',ico:'&#x1F9C6;',nm:'Processador de alimentos',ds:'Com acessórios variados',img:'https://images.unsplash.com/photo-1585325701956-60dd9c8553bc?w=400&q=80'},
+  {id:'8',ico:'&#x1F34E;',nm:'Fruteira',ds:'Para bancada ou mesa',img:'https://images.unsplash.com/photo-1585325701956-60dd9c8553bc?w=400&q=80'},
+  {id:'9',ico:'&#x1F37D;',nm:'Escorredor de louça',ds:'Com bandeja coletora',img:'https://images.unsplash.com/photo-1585325701956-60dd9c8553bc?w=400&q=80'},
+  {id:'10',ico:'&#x1F35C;',nm:'Escorredor de macarrão',ds:'Em inox ou plástico resistente',img:'https://images.unsplash.com/photo-1585325701956-60dd9c8553bc?w=400&q=80'},
+  {id:'11',ico:'&#x1F962;',nm:'Jogo de travessas de vidro',ds:'Conjunto com tampa',img:'https://images.unsplash.com/photo-1585325701956-60dd9c8553bc?w=400&q=80'},
+  {id:'12',ico:'&#x1F943;',nm:'Jogo de taças',ds:'Para vinho ou uso geral',img:'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=400&q=80'},
+  {id:'13',ico:'&#x1F944;',nm:'Jogo de copos',ds:'Conjunto para o dia a dia',img:'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=400&q=80'},
+  {id:'14',ico:'&#x1F374;',nm:'Jogo de talheres',ds:'Conjunto completo em inox',img:'https://images.unsplash.com/photo-1593618998160-e34014e67546?w=400&q=80'},
+  {id:'15',ico:'&#x1F9FA;',nm:'Toalhas de mesa',ds:'Conjunto com guardanapos',img:'https://images.unsplash.com/photo-1585325701956-60dd9c8553bc?w=400&q=80'},
+  {id:'16',ico:'&#x1F37D;',nm:'Jogo de pratos',ds:'Conjunto completo para 6 pessoas',img:'https://images.unsplash.com/photo-1585325701956-60dd9c8553bc?w=400&q=80'},
+  {id:'17',ico:'&#x2615;',nm:'Jogo de xícaras pequenas',ds:'Para café ou chá',img:'https://images.unsplash.com/photo-1509785307050-d4066910ec1e?w=400&q=80'},
+  {id:'18',ico:'&#x1F366;',nm:'Jogo de sobremesa',ds:'Pratos e tigelas para sobremesa',img:'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&q=80'},
+  {id:'19',ico:'&#x1F382;',nm:'Suporte de bolo',ds:'Com tampa e base giratória',img:'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&q=80'},
+  {id:'20',ico:'&#x1F9C1;',nm:'Kit formas antiaderente',ds:'Conjunto de formas para forno',img:'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&q=80'},
+  {id:'21',ico:'&#x1F373;',nm:'Kit frigideiras antiaderente',ds:'Conjunto com tamanhos variados',img:'https://images.unsplash.com/photo-1585325701956-60dd9c8553bc?w=400&q=80'},
+  {id:'22',ico:'&#x1F944;',nm:'Kit utensílios alumínio',ds:'Escumadeira, concha, espátula',img:'https://images.unsplash.com/photo-1593618998160-e34014e67546?w=400&q=80'},
+  {id:'23',ico:'&#x1F9EA;',nm:'Kit utensílios silicone',ds:'Resistente ao calor',img:'https://images.unsplash.com/photo-1593618998160-e34014e67546?w=400&q=80'},
+  {id:'24',ico:'&#x1F4E6;',nm:'Jogo de potes',ds:'Herméticos para mantimentos',img:'https://images.unsplash.com/photo-1585325701956-60dd9c8553bc?w=400&q=80'},
+  {id:'25',ico:'&#x1F964;',nm:'Jarra de vidro',ds:'Para suco ou água',img:'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=400&q=80'},
+  {id:'26',ico:'&#x1F4A7;',nm:'Garrafa de água',ds:'Térmica ou de vidro',img:'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=400&q=80'},
+  {id:'27',ico:'&#x1F9C2;',nm:'Porta temperos',ds:'Conjunto com suporte',img:'https://images.unsplash.com/photo-1585325701956-60dd9c8553bc?w=400&q=80'},
+  {id:'28',ico:'&#x1F36C;',nm:'Açucareiro',ds:'Com colher e tampa',img:'https://images.unsplash.com/photo-1585325701956-60dd9c8553bc?w=400&q=80'},
+  {id:'29',ico:'&#x1F9C2;',nm:'Saleiro',ds:'Com pimenta-do-reino',img:'https://images.unsplash.com/photo-1585325701956-60dd9c8553bc?w=400&q=80'},
+  {id:'30',ico:'&#x1F52A;',nm:'Tábua de cozinha',ds:'Em madeira ou plástico',img:'https://images.unsplash.com/photo-1593618998160-e34014e67546?w=400&q=80'},
+  {id:'31',ico:'&#x1F9C0;',nm:'Ralador',ds:'Com multiple faces e suporte',img:'https://images.unsplash.com/photo-1593618998160-e34014e67546?w=400&q=80'},
+  {id:'32',ico:'&#x1F955;',nm:'Descascador de legumes',ds:'Ergônomico em inox',img:'https://images.unsplash.com/photo-1593618998160-e34014e67546?w=400&q=80'},
+  {id:'33',ico:'&#x1F5D1;',nm:'Lixeira de cozinha',ds:'Com tampa e pedal',img:'https://images.unsplash.com/photo-1585325701956-60dd9c8553bc?w=400&q=80'},
+  {id:'34',ico:'&#x1F9FB;',nm:'Suporte de papel toalha',ds:'De bancada ou parede',img:'https://images.unsplash.com/photo-1585325701956-60dd9c8553bc?w=400&q=80'},
+  {id:'35',ico:'&#x1FA79;',nm:'Tapete de cozinha',ds:'Antiderrapante e lavável',img:'https://images.unsplash.com/photo-1585325701956-60dd9c8553bc?w=400&q=80'},
+  {id:'36',ico:'&#x1F4CF;',nm:'Copo medidor',ds:'Em vidro ou plástico com escala',img:'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=400&q=80'},
+  {id:'37',ico:'&#x1F9B7;',nm:'Abridor de lata',ds:'Manual ou elétrico',img:'https://images.unsplash.com/photo-1593618998160-e34014e67546?w=400&q=80'},
+  {id:'38',ico:'&#x1FA9A;',nm:'Kit peneira alumínio',ds:'Tamanhos variados',img:'https://images.unsplash.com/photo-1585325701956-60dd9c8553bc?w=400&q=80'},
+  {id:'39',ico:'&#x1FA9A;',nm:'Kit peneira plástico',ds:'Tamanhos variados',img:'https://images.unsplash.com/photo-1585325701956-60dd9c8553bc?w=400&q=80'},
+  {id:'40',ico:'&#x1F4A8;',nm:'Ventilador',ds:'De mesa ou de chão',img:'https://images.unsplash.com/photo-1585325701956-60dd9c8553bc?w=400&q=80'},
+  {id:'41',ico:'&#x1F455;',nm:'Ferro de passar',ds:'A vapor com base cerâmica',img:'https://images.unsplash.com/photo-1585325701956-60dd9c8553bc?w=400&q=80'},
+  {id:'42',ico:'&#x1FA92;',nm:'Tábua de passar roupa',ds:'Com regulagem de altura',img:'https://images.unsplash.com/photo-1585325701956-60dd9c8553bc?w=400&q=80'},
+  {id:'43',ico:'&#x1F958;',nm:'Panela de pressão',ds:'5 litros, alumínio ou inox',img:'https://images.unsplash.com/photo-1585325701956-60dd9c8553bc?w=400&q=80'},
+  {id:'44',ico:'&#x1F35A;',nm:'Escorredor de arroz',ds:'Em inox ou plástico',img:'https://images.unsplash.com/photo-1585325701956-60dd9c8553bc?w=400&q=80'},
+  {id:'45',ico:'&#x2615;',nm:'Canecas',ds:'Conjunto de canecas para o dia a dia',img:'https://images.unsplash.com/photo-1509785307050-d4066910ec1e?w=400&q=80'},
+  {id:'46',ico:'&#x1F9CA;',nm:'Formas de gelo silicone',ds:'Vários formatos',img:'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&q=80'}
+]
 var MAP='https://www.google.com/maps/search/?api=1&query=Rua+Ant%C3%B4nio+Pilegi+901+Santa+F%C3%A9+Paran%C3%A1+Brasil';
 var uNm='',cho={},rsvpD={},pSel=null;
 
@@ -268,6 +305,11 @@ function rAdmG(){
 </head>
 <body>
 
+
+
+
+
+
 <div id="p0" class="pg on">
   <div class="cover">
     <div class="cbg" id="cbg"></div>
@@ -293,13 +335,6 @@ function rAdmG(){
 </div>
 
 <div id="p1" class="pg">
-  <div class="slideshow" id="slideshow">
-    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&q=80')"></div>
-    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1615361200141-f45040f367be?w=1200&q=80')"></div>
-    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1495521821757-a1efb6729352?w=1200&q=80')"></div>
-    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?w=1200&q=80')"></div>
-    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1584990347449-a2d4c2c4e2a0?w=1200&q=80')"></div>
-  </div>
   <div class="rbox">
     <span class="rico">&#127958;</span>
     <h2 class="rt">Ol&#225;, <span id="rn" class="rn"></span>!</h2>
@@ -317,13 +352,6 @@ function rAdmG(){
 </div>
 
 <div id="p2" class="pg">
-  <div class="slideshow" id="slideshow">
-    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&q=80')"></div>
-    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1615361200141-f45040f367be?w=1200&q=80')"></div>
-    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1495521821757-a1efb6729352?w=1200&q=80')"></div>
-    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?w=1200&q=80')"></div>
-    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1584990347449-a2d4c2c4e2a0?w=1200&q=80')"></div>
-  </div>
   <div class="mhero">
     <div class="tag">Ch&#225; de Cozinha</div>
     <h1 class="ttl" style="font-size:2rem">Agner <span class="amp">&amp;</span> Gabriela</h1>
@@ -338,20 +366,13 @@ function rAdmG(){
 </div>
 
 <div id="p3" class="pg">
-  <div class="slideshow" id="slideshow">
-    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&q=80')"></div>
-    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1615361200141-f45040f367be?w=1200&q=80')"></div>
-    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1495521821757-a1efb6729352?w=1200&q=80')"></div>
-    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?w=1200&q=80')"></div>
-    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1584990347449-a2d4c2c4e2a0?w=1200&q=80')"></div>
-  </div>
   <div class="gwrap">
     <div class="ghdr">
       <button class="bbk" onclick="pSel=null;pg('p2')">&#8592; Voltar</button>
       <div class="ubar"><div class="udot" id="udt">?</div><span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Ol&#225;, <strong id="unm" style="color:#fff"></strong></span></div>
     </div>
     <div class="synbg"><span class="syndot" id="sdt"></span><span id="stxt">Conectando...</span></div>
-    <div class="plbl" id="plbl">0 de 5 itens escolhidos</div>
+    <div class="plbl" id="plbl">0 de 46 itens escolhidos</div>
     <div class="pwrap"><div class="pfill" id="pfil" style="width:0%"></div></div>
     <div class="slbl">Selecione um presente</div>
     <div id="glist" class="ggrid"></div>
@@ -360,13 +381,6 @@ function rAdmG(){
 </div>
 
 <div id="p4" class="pg">
-  <div class="slideshow" id="slideshow">
-    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&q=80')"></div>
-    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1615361200141-f45040f367be?w=1200&q=80')"></div>
-    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1495521821757-a1efb6729352?w=1200&q=80')"></div>
-    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?w=1200&q=80')"></div>
-    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1584990347449-a2d4c2c4e2a0?w=1200&q=80')"></div>
-  </div>
   <div class="tbox">
     <span class="tico">&#127882;</span>
     <h2 class="tt">Presente confirmado!</h2>
@@ -378,13 +392,6 @@ function rAdmG(){
 </div>
 
 <div id="p5" class="pg">
-  <div class="slideshow" id="slideshow">
-    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&q=80')"></div>
-    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1615361200141-f45040f367be?w=1200&q=80')"></div>
-    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1495521821757-a1efb6729352?w=1200&q=80')"></div>
-    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?w=1200&q=80')"></div>
-    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1584990347449-a2d4c2c4e2a0?w=1200&q=80')"></div>
-  </div>
   <div class="awrap">
     <h2 class="at">&#128203; Painel do evento</h2>
     <div class="acnts">
@@ -399,19 +406,6 @@ function rAdmG(){
   </div>
 </div>
 
-<script>
-// Slideshow
-var slides=document.querySelectorAll('.slide');
-var curSlide=0;
-function nextSlide(){
-  slides[curSlide].classList.remove('active');
-  curSlide=(curSlide+1)%slides.length;
-  slides[curSlide].classList.add('active');
-}
-// Start first slide
-if(slides.length>0)slides[0].classList.add('active');
-setInterval(nextSlide,5000);
-</script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 <script>

@@ -284,8 +284,9 @@ function rndr(){
     var div=document.createElement('div');
     div.className=cl;
     div.setAttribute('onclick','selG("'+g.id+'")');
-    div.innerHTML='<div class="gimg" style="display:flex;align-items:center;justify-content:center;font-size:2.4rem">&#127873;</div>'
-      +'<div class="gbdy"><div class="gnm">'+g.ico+' '+ex(g.nm)+'</div><div class="gds">'+ex(g.ds)+'</div>'+st+'</div>';
+    var imgHtml=g.img?'<img src="'+g.img+'" onload="this.className=\'ok\'" style="width:100%;height:100%;object-fit:cover;display:block;">':'<span style="font-size:2.4rem">\u{1F381}</span>';
+    div.innerHTML='<div class="gimg" style="display:flex;align-items:center;justify-content:center;">'+imgHtml+'</div>'
+      +'<div class="gbdy"><div class="gnm">'+ex(g.nm)+'</div><div class="gds">'+ex(g.ds)+'</div>'+st+'</div>';
     h+=div.outerHTML;
   }
   el.innerHTML=h;
